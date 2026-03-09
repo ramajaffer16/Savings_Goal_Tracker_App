@@ -10,7 +10,6 @@ import Foundation
 // ObservableObject = SwiftUI can subscribe to changes
 // All business logic lives here — views just call these functions
 
-
 class GoalsViewModel: ObservableObject {
 
     // @Published = any view watching this will auto-refresh when it changes

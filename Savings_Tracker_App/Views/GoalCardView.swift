@@ -15,22 +15,58 @@ struct GoalCardView: View {
     
     @State private var showDeposit = false
     @State private var showWithdraw = false
+    @State private var isAmountVisible = true
+    @State private var isTargetVisible = true
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             
-            Text(goal.name)
-                .font(.system(size: 14))
-                .foregroundColor(.white.opacity(0.85))
+            HStack {
+                Text(goal.name)
+                    .font(.system(size: 14))
+                    .foregroundColor(.white.opacity(0.85))
+                
+                Spacer()
+                
+                Button {
+                    // Menu action placeholder
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .font(.system(size: 14))
+                        .foregroundColor(.cardGreen)
+                        .frame(width: 32, height: 32)
+                        .background(Color.white)
+                        .clipShape(Circle())
+                }
+            }
             
             HStack(alignment: .bottom, spacing: 6) {
-                Text(goal.totalSaved.formatted)
-                    .font(.system(size: 30, weight: .bold))
-                    .foregroundColor(.white)
-                Text("KES")
-                    .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.white.opacity(0.8))
-                    .padding(.bottom, 4)
+                if isAmountVisible {
+                    Text(goal.totalSaved.formatted)
+                        .font(.system(size: 30, weight: .bold))
+                        .foregroundColor(.white)
+                    Text("KES")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(.white.opacity(0.8))
+                        .padding(.bottom, 4)
+                } else {
+                    Text("••••••")
+                        .font(.system(size: 30, weight: .bold))
+                        .foregroundColor(.white)
+                    Text("KES")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(.white.opacity(0.8))
+                        .padding(.bottom, 4)
+                }
+                
+                Button {
+                    isAmountVisible.toggle()
+                } label: {
+                    Image(systemName: isAmountVisible ? "eye" : "eye.slash")
+                        .font(.system(size: 18))
+                        .foregroundColor(.white.opacity(0.8))
+                        .padding(.bottom, 4)
+                }
                 
                 Spacer()
                 
@@ -65,13 +101,31 @@ struct GoalCardView: View {
             
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Target: KES \(goal.targetAmount.formatted)")
-                        .font(.system(size: 12))
-                        .foregroundColor(.white.opacity(0.75))
-                    Text("Remaining: KES \(goal.remaining.formatted)")
-                        .font(.system(size: 12))
-                        .foregroundColor(.white.opacity(0.75))
+                    if isTargetVisible {
+                        Text("Target: KES \(goal.targetAmount.formatted)")
+                            .font(.system(size: 12))
+                            .foregroundColor(.white.opacity(0.75))
+                        Text("Remaining: KES \(goal.remaining.formatted)")
+                            .font(.system(size: 12))
+                            .foregroundColor(.white.opacity(0.75))
+                    } else {
+                        Text("Target: KES ••••••")
+                            .font(.system(size: 12))
+                            .foregroundColor(.white.opacity(0.75))
+                        Text("Remaining: KES ••••••")
+                            .font(.system(size: 12))
+                            .foregroundColor(.white.opacity(0.75))
+                    }
                 }
+                
+                Button {
+                    isTargetVisible.toggle()
+                } label: {
+                    Image(systemName: isTargetVisible ? "eye" : "eye.slash")
+                        .font(.system(size: 12))
+                        .foregroundColor(.white.opacity(0.7))
+                }
+                
                 Spacer()
                 if let date = goal.targetDate {
                     Text(date.displayString)
