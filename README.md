@@ -7,10 +7,9 @@ A simple iOS app that lets users create savings goals and track progress with de
  Press **Run**.
 
 ## Architecture Overview
-**SwiftUI** for all UI.
- **MVVM**: Views talk to a single `GoalsViewModel`; the view model talks to models and persistence.
- **Single source of truth**: `GoalsViewModel` holds `goals: [SavingsGoal]` and loads/saves via `PersistenceManager`.
-- **Persistence**: `PersistenceManager` saves/loads `[SavingsGoal]` as JSON in UserDefaults.
+ **SwiftUI**
+ **MVVM**:
+ **Persistence**: `PersistenceManager` saves/loads `[SavingsGoal]` as JSON in UserDefaults.
 
 ## Assumptions Made
 - **Currency**: KES (Kenyan Shillings) for display; no real payments (Coop/M-PESA are UI only).
@@ -24,4 +23,5 @@ A simple iOS app that lets users create savings goals and track progress with de
 - **Coop / M-PESA**: UI only; no real integration. Phone number and “Credit Account” are not used when saving.
 - **Delete goal**: Exists in the view model but is not wired to a visible button in the UI (could be added later).
 - **iOS only**: Built for iOS with SwiftUI; not adapted for macOS or other platforms.
+-**Time limitation**: If I had more time I will hide the toggle visiblity so that users can hide and unhide amount when they want.
 
