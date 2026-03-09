@@ -23,5 +23,4 @@ A simple iOS app that lets users create savings goals and track progress with de
 - **Coop / M-PESA**: UI only; no real integration. Phone number and “Credit Account” are not used when saving.
 - **Delete goal**: Exists in the view model but is not wired to a visible button in the UI (could be added later).
 - **iOS only**: Built for iOS with SwiftUI; not adapted for macOS or other platforms.
-- **Time limitation**: If I had more time I will hide the toggle visiblity so that users can hide and unhide amount when they want.
 
